@@ -1,0 +1,103 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+
+<section>
+  <h1 class="title">EMPLOYEES MANAGEMENT APP</h1>
+  <h2 class="fade-in show-once">Workplace made better</h2>
+  <div class="mouse_scroll">
+
+		<div class="mouse">
+			<div class="wheel"></div>
+		</div>
+		<div>
+			<span class="m_scroll_arrows unu"></span>
+			<span class="m_scroll_arrows doi"></span>
+			<span class="m_scroll_arrows trei"></span>
+		</div>
+</div>
+</section>
+
+<section>
+<div class="container profile reveal">
+  <div id="profileTextArea">
+      <h2 id="profileText"> Better way to manage profiles </h2>
+      <br>
+      <div id="ProfileBtns">
+          <a href="{% url 'AddEmployee' %}"><button class="btn btn-danger" >Create New</button></a>
+          <a href="{% url 'EmployeeInfo' %}"><button class="btn btn-danger" >Get Data</button></a>    
+      </div>
+  </div>
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img id="profileImg" src="{% static 'img/header1.jpg' %}" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img id="profileImg" src="{% static 'img/header2.jpg' %}" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img id="profileImg" src="{% static 'img/header3.jpg' %}" alt="...">
+        </div>
+      </div>
+  </div>
+  
+</div>
+</section>
+
+
+<section>
+
+  <div class="container profile reveal">
+    
+    
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img id="profileImg" src="{% static 'img/header4.jpg' %}" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img id="profileImg" src="{% static 'img/header5.jpg' %}" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img id="profileImg" src="{% static 'img/header6.jpg' %}" alt="...">
+          </div>
+        </div>
+    </div>
+    <div id="profileTextArea">
+      <h2 id="profileText"> Manage all departments at once </h2>
+      <br>
+      <div id="ProfileBtns">
+          <a href="{% url 'AddDept' %}"><button class="btn btn-danger" >Create New</button></a>
+          <a href="{% url 'DeptInfo' %}"><button class="btn btn-danger" >Get Data</button></a>    
+      </div>
+  </div>
+</div>
+</section>
+
+<script>
+function reveal() {
+  var reveals = document.querySelectorAll(".reveal");
+
+  for (var i = 0; i < reveals.length; i++) {
+    var windowHeight = window.innerHeight;
+    var elementTop = reveals[i].getBoundingClientRect().top;
+    var elementVisible = 150;
+
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add("active");
+    } else {
+      reveals[i].classList.remove("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", reveal);
+
+
+Resources
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center flex-content">
+
+        <div class="col-md-8">
+
+          <div class="justify-content-center align-items-center search d-flex form-group wrapper">
+              
+              <input type="text" class="h-35 form-control" id="search-input" placeholder="Enter an employee's name">
+              <i class="fa fa-search"></i>
+            
+              <a href="{% url 'AddEmployee' %}"><button type="button" class="btn btn-danger search-button">Add New</button></a>
+            
+          </div>
+          
+        </div>
+        
+    </div>
+     
+    
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">NAME</th>
+                        <th scope="col">DEPARTMENT</th>
+                        <th scope="col">DESIGNATION</th>   
+                      </tr>
+                </thead>
+                <tbody id = "employees_table">
+                    {% for object in object_list %} 
+                        
+                          <tr>
+                            <td><a href="{% url 'EmployeeDetail' pk=object.pk %}">{{ object.employee_name }}</a></td>
+                            <td>{{ object.employee_dept }}</td>
+                            <td>{{ object.employee_desg }}</td>
+                          </tr>
+                    
+                        
+                    {% endfor %} 
+                </tbody>
+            </table>
+
+
+    
+</div>
+
+<script type="text/javascript">
+  const data = '{{qs_json}}';
+  const rdata = JSON.parse(data.replace(/&quot;/g,'"'));
+   
+  const input = document.getElementById('search-input');
+  let filteredArr = []
+  input.addEventListener('keyup',(e)=>{
+  employees_table.innerHTML = "";
+  filteredArr = rdata.filter(db=>db['employee_name'].toLowerCase().includes(e.target.value.toLowerCase()));
+    
+    if (filteredArr.length>0){
+      filteredArr.map(item=>{
+        employees_table.innerHTML += `<td>${ item['employee_name'] }</td>
+                                      <td>${ item['employee_dept'] }</td>
+                                      <td>${ item['employee_desg'] }</td>`
+      })
+    }
+    else{
+      employees_table.innerHTML = "No employee found with that name."
+    }
+   })
+</script>
+{% endblock %}

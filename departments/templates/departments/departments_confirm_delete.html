@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <div class="container mt-5">
+        <p>Are you sure you want to delete {{ object.dept_name }} department record?</p>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <a href="{% url 'DeptInfo' pk = object.pk %}">
+                <button type="button" class="btn btn-outline-danger">Back</button>
+            </a>
+            <button type = "submit" class="btn btn-outline-danger">Confirm Delete</button>
+        </form>
+    </div>
+{% endblock %}

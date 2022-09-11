@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-8">
+    <div class="row">
+        <div class="col-8">
+            <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+                <h4 id="list-item-1">Name</h4>
+                <p>{{object.employee_name}}</p>
+                <h4 id="list-item-2">Age</h4>
+                <p>{{object.employee_age}}</p>
+                <h4 id="list-item-3">Department</h4>
+                <p>{{object.employee_dept}}</p>
+                <h4 id="list-item-4">Designation</h4>
+                <p>{{object.employee_desg}}</p>
+                <h4 id="list-item-4">Verfication Document</h4>
+                <a href="{{ object.verification_doc.url }}">{{ object.verification_doc.name }}</a>
+            </div>
+        </div>
+        <div class="col">
+            <p>
+            <img width="100%" src="{{ object.profile_pic.url }}" alt="...">
+        </div>
+    </div>
+    <a href="{% url 'UpdateEmployee' pk=object.pk %}"><button class="btn btn-danger" >Update</button></a>
+    <a href="{% url 'DeleteEmployee' pk=object.pk %}"><button class="btn btn-danger" >Delete</button></a>
+      
+    
+    
+    
+
+</div>
+
+{% endblock %}
+
+    
